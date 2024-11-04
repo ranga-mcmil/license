@@ -1,0 +1,244 @@
+
+{% load notifications_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Licence Aplication</title>
+  <!-- Iconic Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/font-awesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/flat-icons/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/cryptocoins/cryptocoins.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css' %}">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css' %}">
+
+  <!-- Page Specific CSS (Slick Slider.css) -->
+  <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+
+  <!-- medjestic styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+  <!-- Page Specific CSS (Morris Charts.css) -->
+  <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}">
+
+</head>
+
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+  <!-- Preloader -->
+  <div id="preloader-wrap">
+    <div class="spinner spinner-8">
+      <div class="ms-circle1 ms-child"></div>
+      <div class="ms-circle2 ms-child"></div>
+      <div class="ms-circle3 ms-child"></div>
+      <div class="ms-circle4 ms-child"></div>
+      <div class="ms-circle5 ms-child"></div>
+      <div class="ms-circle6 ms-child"></div>
+      <div class="ms-circle7 ms-child"></div>
+      <div class="ms-circle8 ms-child"></div>
+      <div class="ms-circle9 ms-child"></div>
+      <div class="ms-circle10 ms-child"></div>
+      <div class="ms-circle11 ms-child"></div>
+      <div class="ms-circle12 ms-child"></div>
+    </div>
+  </div>
+  <!-- Overlays -->
+  <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+  <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity" data-toggle="slideRight">
+  </div>
+  <!-- Sidebar Navigation Left -->
+  <aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
+    <!-- Logo -->
+    
+    <!-- Navigation -->
+    
+  </aside>
+  <!-- Sidebar Right -->
+
+  <!-- Main Content -->
+  <main class="body-content">
+    <!-- Navigation Bar -->
+    <nav class="navbar ms-navbar">
+      <div class="ms-aside-toggler ms-toggler pl-0" data-target="#ms-side-nav" data-toggle="slideLeft">
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+      </div>
+      <div class="logo-sn logo-sm ms-d-block-sm">
+        <a class="pl-0 ml-0 text-center navbar-brand mr-0" style="color: whitesmoke;"
+          href="{% url 'accounts:dashboard' %}">Licence Aplication </a>
+      </div>
+      <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
+
+        <li class="ms-nav-item ms-nav-user dropdown">
+          <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img
+              class="ms-user-img ms-img-round float-right" src="{{user.pic.url}}" alt="people"> </a>
+          <ul class="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
+            <li class="dropdown-menu-header">
+              <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">{{user.get_full_name}}</span></h6>
+            </li>
+            <li class="dropdown-divider"></li>
+
+            <li class="ms-dropdown-list">
+              <a class="media fs-14 p-2" href="{% url 'accounts:profile_edit' %}"> <span><i
+                    class="flaticon-user mr-2"></i> Edit Profile</span> </a>
+            </li>
+            <li class="dropdown-divider"></li>
+
+            <li class="ms-dropdown-list">
+              <a class="media fs-14 p-2" href="{% url 'accounts:password_change' %}"> <span><i
+                    class="flaticon-user mr-2"></i> Change Password</span> </a>
+            </li>
+            <li class="dropdown-divider"></li>
+
+            <li class="dropdown-menu-footer">
+              <a class="media fs-14 p-2" href="{% url 'accounts:logout' %}"> <span><i
+                    class="flaticon-shut-down mr-2"></i> Logout</span> </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="ms-toggler ms-d-block-sm pr-0 ms-nav-toggler" data-toggle="slideDown" data-target="#ms-nav-options">
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+      </div>
+    </nav>
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper">
+
+
+
+
+
+
+
+
+      {% if form.errors %}
+      {% include 'form_messages.html' with errors=form.errors %}
+      {% endif %}
+
+      {% if profile_form.errors %}
+      {% include 'form_messages.html' with errors=profile_form.errors %}
+      {% endif %}
+
+      {% if mobile_form.errors %}
+      {% include 'form_messages.html' with errors=mobile_form.errors %}
+      {% endif %}
+
+      {% include 'messages.html' %}
+
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+              <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i> Home</a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Accounts</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Sign In</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-xl-12 col-md-12">
+          <div class="ms-panel">
+            <div class="ms-panel-header ms-panel-custome">
+              <h6>Sign In</h6>
+            </div>
+            <div class="ms-panel-body">
+              <form class="needs-validation" method="post" enctype="multipart/form-data">
+      
+                <div class="form-row">
+                  <div class="col-md-12 mb-2">
+                    <label>Email *</label>
+                    <div class="input-group">
+                      {{form.username}}
+      
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="form-row">
+                  <div class="col-md-12 mb-2">
+                    <label>Password *</label>
+                    <div class="input-group">
+                      {{form.password}}
+      
+                    </div>
+                  </div>
+                </div>
+                {% csrf_token %}
+                <button class="btn btn-primary mt-4 d-inline w-20" type="submit">Sign In</button>
+                <p class="mb-0 mt-3">Don't have an account? <a class="btn-link"
+                  href="{% url 'accounts:register' %}">Create Account</a> </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <!-- MODALS -->
+
+  <!-- Reminder Modal -->
+  
+  <!-- Notes Modal -->
+  
+
+  <!-- Modal -->
+
+
+
+  <!-- Modal -->
+
+
+
+  <!-- Modal -->
+
+
+  <!-- SCRIPTS -->
+  <!-- Global Required Scripts Start -->
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/perfect-scrollbar.js' %}"></script>
+  <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+
+
+  <!-- Global Required Scripts End -->
+  <script src="{% static 'assets/js/d3.v3.min.js' %}"></script>
+  <script src="{% static 'assets/js/topojson.v1.min.js' %}"></script>
+  <script src="{% static 'assets/js/datamaps.all.min.js' %}"></script>
+
+  <!-- Page Specific Scripts Start -->
+  <script src="{% static 'assets/js/slick.min.js' %}"></script>
+  <script src="{% static 'assets/js/moment.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.webticker.min.js' %}"></script>
+  <script src="{% static 'assets/js/Chart.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/index-chart.js' %}"></script>
+
+  <!-- Page Specific Scripts Finish -->
+  <script src="{% static 'assets/js/calendar.js' %}"></script>
+
+  <!-- medjestic core JavaScript -->
+  <script src="{% static 'assets/js/framework.js' %}"></script>
+  <!-- Settings -->
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+
+  <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+  {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
+</body>
+
+
+</html>

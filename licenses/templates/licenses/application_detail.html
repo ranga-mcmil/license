@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i> Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'licenses:applications' %}">Licenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">License Application</li>
+            </ol>
+        </nav>
+        <div class="ms-panel">
+            <div class="ms-panel-header header-mini">
+                <div class="d-flex justify-content-between">
+                    <h6>Application</h6>
+                    <h6>{{application.status}}</h6>
+                </div>
+            </div>
+            <div class="ms-panel-body">
+                <!-- Invoice To -->
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="invoice-address">
+                            <h3>By: </h3>
+                            <p><span class="bold">Name</span>: {{application.applicant.get_full_name}}</p>
+                            <p><span class="bold">Email</span>: {{application.applicant.email}}</p>
+                            <p><span class="bold">ID Number</span>: {{application.applicant.id_number}}</p>
+                            <p><span class="bold">Gender</span>: {{application.applicant.sex}}</p>
+                            <p class="mb-0"><span class="bold">Address</span>: {{application.applicant.address}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                        <ul class="invoice-date">
+                            <li><span class="bold">License Type</span> : {{application.license_type.name}}</li>
+                            <li><span class="bold">License Price</span> : $ {{application.license_type.price}}</li>
+                            <li><span class="bold">Application Date</span> : {{application.date_created|date:"d M, Y"}}</li>
+                            <li><span class="bold">Expiry Date</span> : {{application.expiry_date|date:"d M, Y"}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Invoice Table -->
+                <div class="ms-invoice-table table-responsive mt-5">
+                    <p>{{application.notes}}</p>
+                </div>
+
+                {% if user.user_type == 'Admin' and application.status == 'Pending' %}
+
+                    <div class="row">
+                        <div class="invoice-buttons text-right pr-3">
+                            <a href="{% url 'licenses:decline' application.id %}" class="btn btn-danger">Decline</a>
+                        </div>
+    
+                        <div class="invoice-buttons text-right">
+                            <a href="{% url 'licenses:approve' application.id %}" class="btn btn-success">Approve</a>
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    {% if application.status == 'Approved - (Paid)' %}
+                        <div class="invoice-buttons text-right">
+                            <a href="" class="btn btn-success">Paid</a>
+                        </div>
+                    {% elif application.status == 'Declined' %}
+                        <div class="invoice-buttons text-right">
+                            <a href="" class="btn btn-danger">Declined</a>
+                        </div>
+                    {% elif application.status == 'Pending' %}
+                        <div class="invoice-buttons text-right">
+                            <a href="" class="btn btn-warning" >Pending</a>
+                        </div>
+
+                    {% elif application.status == 'Approved - (Pending Payment)' and application.applicant == user %}
+                        <div class="invoice-buttons text-right">
+                            <a href="{% url 'payments:new' application.id %}" class="btn  btn-primary">Make Payment</a>
+                        </div>
+                    {% elif application.status == 'Expired' and application.applicant == user %}
+                        <div class="invoice-buttons text-right">
+                            <a href="{% url 'payments:new' application.id %}" class="btn  btn-primary">Renew</a>
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

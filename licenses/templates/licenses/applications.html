@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i>
+                        Home</a></li>
+                <li class="breadcrumb-item"><a href="">Licenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">License Applications List</li>
+            </ol>
+        </nav>
+        <div class="ms-panel">
+            <div class="ms-panel-header ms-panel-custome">
+                <h6>License Applications List</h6>
+                {% if user.user_type != 'Admin' %}
+                    <a href="{% url 'licenses:application_new' %}" class="ms-text-primary">Add New</a>
+                {% endif %}
+            </div>
+
+            <div class="ms-panel-body">
+                <div class="table-responsive">
+                    <table id="data-table-2" class="table table-striped thead-primary w-100 dataTable no-footer"
+                        role="grid" aria-describedby="data-table-2_info" style="width: 720px;">
+                        <thead>
+                            <tr role="row">
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-sort="ascending" style="width: 37px;">Applicant
+                                </th>
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Address: activate to sort column " style="width: 51px;">License Type
+                                </th>
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Address: activate to sort column " style="width: 51px;">Status
+                                </th>
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Address: activate to sort column " style="width: 51px;">Date Created
+                                </th>
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Address: activate to sort column " style="width: 51px;">Expiry Date
+                                </th>
+                                <th class="text-right" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Action: activate to sort column ascending" style="width: 42px;">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for application in applications %}
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">{{application.applicant.get_full_name}}</td>
+                                <td>{{ application.license_type }}</td>
+                                <td>{{ application.status }}</td>
+                                <td>{{ application.date_created|date:"d M, Y" }}</td>
+                                <td>{{ application.expiry_date|date:"d M, Y" }}</td>
+
+
+                                <td class="text-right">
+                                    <a href="{% url 'licenses:application_detail' application.id %}"><i class="far fa-file-alt ms-text-primary"></i></a>
+                                    <a href="{% url 'licenses:application_delete' application.id %}"><i class="far fa-trash-alt ms-text-danger"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

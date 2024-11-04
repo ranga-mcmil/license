@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i>
+                        Home</a>
+                </li>
+                <li class="breadcrumb-item"><a href="#">Licenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">New License Type</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-xl-12 col-md-12">
+        <div class="ms-panel">
+            <div class="ms-panel-header ms-panel-custome">
+                <h6>Add License Type</h6>
+                <a href="{% url 'licenses:license_type_list' %}" class="ms-text-primary">License Type List</a>
+            </div>
+            <div class="ms-panel-body">
+                <form class="needs-validation" method="post" enctype="multipart/form-data">
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-2">
+                            <label>Name *</label>
+                            <div class="input-group">
+                                {{form.name}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-2">
+                            <label>Price *</label>
+                            <div class="input-group">
+                                {{form.price}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    {% csrf_token %}
+                    <button class="btn btn-primary mt-4 d-inline w-20" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

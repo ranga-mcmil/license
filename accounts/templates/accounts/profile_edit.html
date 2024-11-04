@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i>
+                        Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Accounts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-xl-12 col-md-12">
+        <div class="ms-panel">
+            <div class="ms-panel-header ms-panel-custome">
+                <h6>Edit Profile</h6>
+            </div>
+            <div class="ms-panel-body">
+                <form class="needs-validation" method="post" enctype="multipart/form-data">
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-2">
+                            <label>First Name</label>
+                            <div class="input-group">
+                                {{form.first_name}}
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+                            <label>Last Name</label>
+                            <div class="input-group">
+                                {{form.last_name}}
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-2">
+                            <label>Address</label>
+                            <div class="input-group">
+                                {{form.address}}
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+                            <label>Sex</label>
+                            <div class="input-group">
+                                {{form.sex}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 ">
+                            <label for="validationCustom01">ID Number</label>
+                            <div class="input-group">
+                                {{form.id_number}}
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-2">
+                            <label>Profile Picture</label>
+                            <div class="input-group">
+                                {{form.pic}}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                    <button class="btn btn-primary mt-4 d-inline w-20" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Notifications</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-xl-12 col-md-12">
+
+        <div class="ms-panel">
+            <div class="ms-panel-header">
+                <h6>Notifications</h6>
+            </div>
+            <div class="ms-panel-body">
+                <div class="accordion" id="accordionExample3">
+                    
+                    {% for notification in notifications %}
+                        <div class="card">
+                            <div class="card-header" data-toggle="" role="button" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                            <span class="has-icon"> <i class="flaticon-bell" style="width: 10px;"></i> {{ notification.description }} - <a href="{% url 'licenses:application_detail' notification.action_object.id %}">Application ID {{ notification.action_object.id }}</a> </span>
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

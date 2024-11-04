@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pl-0">
+                <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}"><i class="material-icons">home</i>
+                        Home</a></li>
+                <li class="breadcrumb-item"><a href="">Licenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">License Type List</li>
+            </ol>
+        </nav>
+        <div class="ms-panel">
+            <div class="ms-panel-header ms-panel-custome">
+                <h6>License Type List</h6>
+                <a href="{% url 'licenses:license_type_new' %}" class="ms-text-primary">Add New</a>
+            </div>
+
+            <div class="ms-panel-body">
+                <div class="table-responsive">
+                    <table id="data-table-2" class="table table-striped thead-primary w-100 dataTable no-footer"
+                        role="grid" aria-describedby="data-table-2_info" style="width: 720px;">
+                        <thead>
+                            <tr role="row">
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-sort="ascending" style="width: 37px;">Name
+                                </th>
+                                <th class="" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Address: activate to sort column " style="width: 51px;">Price
+                                </th>
+                                <th class="text-right" tabindex="0" aria-controls="data-table-2" rowspan="1" colspan="1"
+                                    aria-label="Action: activate to sort column ascending" style="width: 42px;">Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for license_type in license_types %}
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">{{license_type.name}}</td>
+                                <td>$ {{ license_type.price }}</td>
+
+                                <td class="text-right">
+                                    <a href="{% url 'licenses:license_type_edit' license_type.id %}"><i class="fas fa-pencil-alt ms-text-primary"></i></a>
+                                    <a href="{% url 'licenses:license_type_delete' license_type.id %}"><i class="far fa-trash-alt ms-text-danger"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

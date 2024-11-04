@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from androthemes.com/themes/html/medjestic/pages/prebuilt-pages/default-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Mar 2023 00:13:26 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>License Application System</title>
+  <!-- Iconic Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/font-awesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/flat-icons/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/cryptocoins/cryptocoins.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css' %}">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css' %}">
+
+  <!-- Page Specific CSS (Slick Slider.css) -->
+  <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+
+  <!-- medjestic styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+  <!-- Page Specific CSS (Morris Charts.css) -->
+  <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}">
+
+</head>
+
+<body class="ms-body ms-primary-theme ms-logged-out">
+  <!-- Setting Panel -->
+
+  <!-- Preloader -->
+  
+  <!-- Overlays -->
+  <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+  <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity" data-toggle="slideRight">
+  </div>
+  <!-- Sidebar Navigation Left -->
+
+  <!-- Main Content -->
+  <main class="body-content">
+    <!-- Navigation Bar -->
+    <nav class="navbar ms-navbar">
+      <div class="ms-aside-toggler ms-toggler pl-0" data-target="#ms-side-nav" data-toggle="slideLeft">
+
+      </div>
+      <div class="logo-sn logo-sm ms-d-block-sm">
+        <a class="pl-0 ml-0 text-center navbar-brand mr-0" style="color: aliceblue;" href="{% url 'accounts:dashboard' %}"></a>
+      </div>
+      <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
+        <li class="ms-nav-item ms-search-form pb-0 py-0">
+
+        </li>
+        <li class="ms-nav-item">
+          <a href="" class="btn btn-primary mt-0">.</a>
+        </li>
+      </ul>
+      <div class="ms-toggler ms-d-block-sm pr-0 ms-nav-toggler" data-toggle="slideDown" data-target="#ms-nav-options">
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+        <span class="ms-toggler-bar bg-white"></span>
+      </div>
+    </nav>
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper ms-auth">
+
+      {% if form.errors %}
+            
+          {% include 'form_messages.html' with errors=form.errors %}
+          
+      {% endif %}
+      {% include 'messages.html' %}
+
+      <div class="ms-auth-container">
+
+        
+
+        <div class="ms-auth-col">
+        
+          <div class="ms-auth-form">
+            
+            <form class="needs-validation" method="post">
+              <p style="font-size: 40px; text-transform: capitalize;" class="pb-5 text-center">License Application System <br/> City of Kwekwe</p>
+              <h5>Login to Account</h5>
+              <p>Please enter your email and password to continue</p>
+              <div class="mb-3">
+                <label for="validationCustom08">Email Address</label>
+                <div class="input-group">
+                  {{form.username}}
+                  <div class="invalid-feedback">
+                    Please provide a valid email.
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="validationCustom09">Password</label>
+                <div class="input-group">
+                  {{form.password}}
+                  <div class="invalid-feedback">
+                    Please provide a password.
+                  </div>
+                </div>
+              </div>
+              {% csrf_token %}
+              <button class="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
+              <p class="mb-0 mt-3 text-center">Don't have an account? <a class="btn-link"
+                  href="{% url 'accounts:register' %}">Create Account</a> </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Forgot Password Modal -->
+
+  </main>
+
+  <!-- SCRIPTS -->
+  <!-- Global Required Scripts Start -->
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/perfect-scrollbar.js' %}"></script>
+  <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+
+
+  <!-- Global Required Scripts End -->
+  <script src="{% static 'assets/js/d3.v3.min.js' %}"></script>
+  <script src="{% static 'assets/js/topojson.v1.min.js' %}"></script>
+  <script src="{% static 'assets/js/datamaps.all.min.js' %}"></script>
+
+  <!-- Page Specific Scripts Start -->
+  <script src="{% static 'assets/js/slick.min.js' %}"></script>
+  <script src="{% static 'assets/js/moment.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.webticker.min.js' %}"></script>
+  <script src="{% static 'assets/js/Chart.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/index-chart.js' %}"></script>
+
+  <!-- Page Specific Scripts Finish -->
+  <script src="{% static 'assets/js/calendar.js' %}"></script>
+
+  <!-- medjestic core JavaScript -->
+  <script src="{% static 'assets/js/framework.js' %}"></script>
+  <!-- Settings -->
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+</body>
+
+<!-- Mirrored from androthemes.com/themes/html/medjestic/pages/prebuilt-pages/default-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Mar 2023 00:13:29 GMT -->
+
+</html>

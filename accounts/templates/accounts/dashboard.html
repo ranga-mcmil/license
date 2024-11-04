@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="row">
+  
+    <!-- Notifications Widgets -->
+    
+
+    
+    <div class="col-xl-6 col-md-6 col-sm-6">
+      <a href="{% url 'licenses:applications' %}?f=Pending">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Pending</h6>
+              <p class="ms-card-change"> {{pending}}</p>
+            </div>
+          </div>
+          <i class="fas fa-clock ms-icon-mr"></i>
+        </div>
+      </a>
+    </div>
+
+
+    <div class="col-xl-6 col-md-6 col-sm-6">
+      <a href="{% url 'licenses:applications' %}?f=Approved - (Pending Payment)">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Pending Payment</h6>
+              <p class="ms-card-change"> {{pending_payment}}</p>
+            </div>
+          </div>
+          <i class="fas fa-check ms-icon-mr"></i>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-xl-6 col-md-6 col-sm-6">
+      <a href="{% url 'licenses:applications' %}?f=Declined">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Declined</h6>
+              <p class="ms-card-change"> {{declined}}</p>
+            </div>
+          </div>
+          <i class="fas fa-times-circle ms-icon-mr"></i>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-xl-6 col-md-6 col-sm-6">
+      <a href="{% url 'licenses:applications' %}?f=Approved - (Paid)">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Paid</h6>
+              <p class="ms-card-change"> {{paid}}</p>
+            </div>
+          </div>
+          <i class="fas fa-money-bill-alt ms-icon-mr"></i>
+        </div>
+      </a>
+    </div>
+    
+    <div class="col-xl-6 col-md-6 col-sm-6">
+      <a href="{% url 'licenses:applications' %}?f=Expired">
+        <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+          <div class="ms-card-body media">
+            <div class="media-body">
+              <h6>Expired</h6>
+              <p class="ms-card-change"> {{expired}}</p>
+            </div>
+          </div>
+          <i class="fas fa-calendar-alt ms-icon-mr"></i>
+        </div>
+      </a>
+    </div>
+
+    
+
+    
+  </div>
+  
+
+{% endblock %}
